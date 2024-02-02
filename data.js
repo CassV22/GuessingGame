@@ -11,7 +11,7 @@ const wordList = [
     },
     {
         word: "sewing machine",
-        image: "./images/sewing-machine.jpg",
+        image: "./images/sewing_machine.jpg",
         clue: "Machine used to join fabrics or other materials together with thread"
      },
      {
