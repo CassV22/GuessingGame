@@ -15,6 +15,8 @@
             <div class="img-container">
                 <img src="./images/starterImg.jpg" alt="Image of clue" id="clueImg">
             </div>
+            <!--Need this input as a way to collect/caputure user input; will later hide-->
+            <input type="text" class="typing-input" maxlength="1">
             <!--container for guess boxes-->
             <div class="inputs">
                 <input type="text" disabled>
@@ -26,15 +28,16 @@
             </div>
             <!--container for info; clue, number of remaining guesses, score, guesses-->
             <div class="info">
-                <p class="clue details"><b>Clue:</b> <span>Clue goes here</span></p>
-                <p class="guesses details"><b>Remaining Guesses:</b> <span>6</span></p>
-                <p class="wrongLetters details"><b>Wrong Letters:</b> <span>a, b, c, d</span></p>
-                <p class="score details"><b>Your Score Is:</b> <span>100</span></p>                    
+                <p class="clue details"><b>Clue:</b> <span id="clue">Clue goes here</span></p>
+                <p class="guesses details"><b>Remaining Guesses:</b> <span id="guesses">6</span></p>
+                <p class="wrongLetters details"><b>Wrong Letters:</b> <span id="wrong">a, b, c, d</span></p>
+                <p class="score details"><b>Your Score Is:</b> <span id="score">100</span></p>                    
             </div>
             <button id="resetBtn">Reset</button>
         </div>
 
         <script src="script.js"></script>
+        <script src="data.js"></script>
     </body>
     
 
