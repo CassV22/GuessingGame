@@ -2,6 +2,8 @@ const clueImg = document.getElementById("clueImg");
 const clue = document.getElementById("clue");
 const inputs = document.querySelector(".inputs");
 let typingInput = document.querySelector(".typing-input");
+const guesses = document.getElementById("guesses");
+let guessesInitial = 6;
 
 //need typingInput to capture what user types; pressing a key tells the document to listen for typing, then typingInput event listener initiates game
 typingInput.addEventListener("input", initGame);
@@ -40,7 +42,15 @@ function initGame(e) {
                 }
             }
         } else {
-            console.log("incorrect guess");
+            alert("Incorrect guess");
+            guessesInitial -= 1;
+            guesses.innerText = guessesInitial;            
+            if (guessesInitial === 0) {
+                alert(`You didn't find the word. The correct word was ${word}.`);
+                getRandomObj();
+                guessesInitial = 6;
+                guesses.innerText = guessesInitial;
+            }          
         }
     }
     typingInput.value = "";     //resets input after a letter is pressed
