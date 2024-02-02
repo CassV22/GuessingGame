@@ -4,6 +4,11 @@ const inputs = document.querySelector(".inputs");
 let typingInput = document.querySelector(".typing-input");
 const guesses = document.getElementById("guesses");
 let guessesInitial = 6;
+const intialScore = document.getElementById("score");
+let score = 100;
+const wrongGuesses = document.getElementById("wrong");
+let wrongLetters = [];
+
 
 //need typingInput to capture what user types; pressing a key tells the document to listen for typing, then typingInput event listener initiates game
 typingInput.addEventListener("input", initGame);
@@ -41,15 +46,22 @@ function initGame(e) {
                     inputs.querySelectorAll("input")[i].value = key;
                 }
             }
-        } else {
+        } else {      //needs scoring; for each round lost, lose 10 points get down to 70, you lose
             alert("Incorrect guess");
             guessesInitial -= 1;
-            guesses.innerText = guessesInitial;            
+            guesses.innerText = guessesInitial; 
+            wrongLetters.push(key);
+            wrongGuesses.innerHTML = wrongLetters;           
             if (guessesInitial === 0) {
                 alert(`You didn't find the word. The correct word was ${word}.`);
+                score -= 10;
+                //if score gets to 70; alert: You should study your tools more; game over
                 getRandomObj();
                 guessesInitial = 6;
                 guesses.innerText = guessesInitial;
+                intialScore.innerText = score;
+                wrongLetters = [];
+                wrongGuesses.innerHTML = wrongLetters;
             }          
         }
     }
