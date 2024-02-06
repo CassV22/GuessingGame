@@ -9,6 +9,7 @@ let score = 100;
 const wrongGuesses = document.getElementById("wrong");
 let wrongLetters = [];
 
+document.addEventListener("DOMContentLoaded", getRandomObj);
 
 //need typingInput to capture what user types; pressing a key tells the document to listen for typing, then typingInput event listener initiates game
 typingInput.addEventListener("input", initGame);
@@ -46,11 +47,12 @@ function initGame(e) {
                     inputs.querySelectorAll("input")[i].value = key;
                 }
             }
-        } else {      //needs scoring; for each round lost, lose 10 points get down to 70, you lose
+        } else {      //needs scoring; for each round lost, lose 10 points get down to 70, you lose   
+            //need an else if so alert can be given if repeated letters are entered         
             alert("Incorrect guess");
             guessesInitial -= 1;
             guesses.innerText = guessesInitial; 
-            wrongLetters.push(key);
+            wrongLetters.push(` ${key}`);
             wrongGuesses.innerHTML = wrongLetters;           
             if (guessesInitial === 0) {
                 alert(`You didn't find the word. The correct word was ${word}.`);
