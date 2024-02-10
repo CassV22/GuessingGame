@@ -8,6 +8,7 @@ const intialScore = document.getElementById("score");
 let score = 100;
 const wrongGuesses = document.getElementById("wrong");
 let wrongLetters = [];
+let correctLetters = [];
 
 document.addEventListener("DOMContentLoaded", getRandomObj);
 
@@ -41,20 +42,26 @@ function initGame(e) {
     console.log(key);
     if(key.match(/^[A-Za-z]+$/)) {      //checks to ensure a valid key has been pressed (letters only)
         console.log(key);
-        if(word.includes(key)) {        //checks if the letter entered matches any of the letters within the word
+        if (correctLetters.includes(`${key}`)) {    //user feedback if letter has already been used
+            alert('You have already tried this letter.');
+        } else if(word.includes(key)) {        //checks if the letter entered matches any of the letters within the word
             for(let i=0; i< word.length; i++) {
                 if(word[i] === key) {
-                    inputs.querySelectorAll("input")[i].value = key;
+                    inputs.querySelectorAll("input")[i].value = key;                    
                 }
             }
+            correctLetters.push(`${key}`);
+            console.log(correctLetters);
+        } else if(wrongLetters.includes(` ${key}`)) {   //user feedback if letter has already been used
+            alert('You have already tried this letter.');
         } else {      //needs scoring; for each round lost, lose 10 points get down to 70, you lose   
             //need an else if so alert can be given if repeated letters are entered         
             alert("Incorrect guess");
             guessesInitial -= 1;
             guesses.innerText = guessesInitial; 
-            wrongLetters.push(` ${key}`);
+            wrongLetters.push(` ${key}`);            
             wrongGuesses.innerHTML = wrongLetters;           
-            if (guessesInitial === 0) {
+            if (guessesInitial === 0) {                
                 alert(`You didn't find the word. The correct word was ${word}.`);
                 score -= 10;
                 //if score gets to 70; alert: You should study your tools more; game over
